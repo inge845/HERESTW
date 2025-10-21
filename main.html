@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rusowip</title>
+  <style>
+    /* Importar fuente de Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
+
+    /* --- Estilos Generales --- */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1a1a1a;
+      color: #e0e0e0;
+      margin: 0;
+      padding: 20px;
+    }
+    header, footer {
+      text-align: center;
+      padding: 20px 0;
+    }
+    h1 {
+      font-family: 'Metal+Mania', cursive;
+      font-size: 4rem;
+      color: #ff0000;
+      text-shadow: 2px 2px 4px #000000;
+      margin: 0;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: normal;
+      border-bottom: 1px solid #444;
+      padding-bottom: 10px;
+    }
+
+    /* --- Estilos para las Pestañas --- */
+    .tabs {
+      text-align: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ff0000;
+    }
+    .tab-link {
+      background-color: transparent;
+      color: #e0e0e0;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      font-size: 17px;
+      transition: 0.3s;
+    }
+    .tab-link:hover {
+      background-color: #2a2a2a;
+    }
+    .tab-link.active {
+      background-color: #ff0000;
+      color: #1a1a1a;
+      font-weight: bold;
+    }
+    .tab-content {
+      display: none; /* Ocultar contenido por defecto */
+      padding: 20px 12px;
+      border-top: none;
+    }
+    #cart-counter {
+        background-color: #0099ff;
+        color: white;
+        border-radius: 50%;
+        padding: 2px 6px;
+        font-size: 12px;
+        vertical-align: top;
+    }
+
+    /* --- Estilos del Catálogo y Botones --- */
+    .catalogo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .producto {
+      background-color: #2a2a2a;
+      border: 1px solid #444;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .producto img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-bottom: 15px;
+    }
+    .producto h3, .producto p {
+        margin-bottom: 15px;
+    }
+    .precio {
+      font-weight: bold;
+      color: #0099ff;
+    }
+    .product-buttons {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    .add-to-cart-btn, .buy-now-btn {
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+    .add-to-cart-btn {
+        background-color: #007BFF;
+        color: white;
+    }
+    .add-to-cart-btn:hover {
+        background-color: #0056b3;
+    }
+    .buy-now-btn {
+        background-color: #28a745; /* Color verde */
+        color: white;
+    }
+    .buy-now-btn:hover {
+        background-color: #218838;
+    }
+    
+    /* --- Estilos de Secciones de Información y Carrito --- */
+    .info-section, .cart-section {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #2a2a2a;
+        padding: 20px;
+        border-radius: 8px;
+    }
+    .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #444;
+        padding: 10px 0;
+    }
+    .remove-from-cart-btn {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+        font-weight: bold;
+    }
+    .cart-total {
+        text-align: right;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>rusowip</h1>
+    <p>El mejor equipamiento para tu setup</p>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-link active" data-tab="Catalogo">Catálogo</button>
+    <button class="tab-link" data-tab="Pagos">Pagos</button>
+    <button class="tab-link" data-tab="Envios">Envíos</button>
+    <button class="tab-link" data-tab="Carrito">Carrito <span id="cart-counter">0</span></button>
+  </nav>
+
+  <div id="Catalogo" class="tab-content" style="display:block;">
+    <h2>Catálogo de Productos</h2>
+    <div class="catalogo">
+        <article class="producto">
+          <div>
+            <h3>Teclado Mecánico RGB</h3>
+            <img src="tkl.jpg" alt="Teclado mecánico con luces RGB" width="200">
+            <p>Switches de alta precisión y retroiluminación personalizable.</p>
+            <p class="precio">$1,800.00</p>
+          </div>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn" data-nombre="Teclado Mecánico RGB" data-precio="1800">Agregar al Carrito</button>
+            <button class="buy-now-btn" data-nombre="Teclado Mecánico RGB" data-precio="1800">Comprar Ahora</button>
+          </div>
+        </article>
+        <article class="producto">
+          <div>
+            <h3>Mouse Gamer Inalámbrico</h3>
+            <img src="g502.jpg" alt="Mouse gamer Logitech" width="200">
+            <p>Sensor óptico de 16,000 DPI y diseño ultraligero.</p>
+            <p class="precio">$1,250.00</p>
+          </div>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn" data-nombre="Mouse Gamer" data-precio="1250">Agregar al Carrito</button>
+            <button class="buy-now-btn" data-nombre="Mouse Gamer" data-precio="1250">Comprar Ahora</button>
+          </div>
+        </article>
+        <article class="producto">
+          <div>
+            <h3>Auriculares 7.1 Surround</h3>
+            <img src="audifonos.jpg" alt="Auriculares con micrófono" width="200">
+            <p>Sonido envolvente para una inmersión total en el juego.</p>
+            <p class="precio">$2,100.00</p>
+          </div>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn" data-nombre="Auriculares 7.1" data-precio="2100">Agregar al Carrito</button>
+            <button class="buy-now-btn" data-nombre="Auriculares 7.1" data-precio="2100">Comprar Ahora</button>
+          </div>
+        </article>
+        <article class="producto">
+          <div>
+            <h3>Monitor Curvo 144Hz</h3>
+            <img src="monitor.png" alt="Monitor gaming curvo" width="200">
+            <p>Pantalla de 27 pulgadas con tiempo de respuesta de 1ms.</p>
+            <p class="precio">$6,500.00</p>
+          </div>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn" data-nombre="Monitor Curvo" data-precio="6500">Agregar al Carrito</button>
+            <button class="buy-now-btn" data-nombre="Monitor Curvo" data-precio="6500">Comprar Ahora</button>
+          </div>
+        </article>
+    </div>
+  </div>
+
+  <div id="Pagos" class="tab-content">
+    <h2>Métodos de Pago</h2>
+    <div class="info-section">
+      <p>💳 Aceptamos una amplia variedad de métodos de pago para tu comodidad...</p>
+    </div>
+  </div>
+
+  <div id="Envios" class="tab-content">
+    <h2>Políticas de Envío</h2>
+    <div class="info-section">
+      <p>🚚 Realizamos envíos a toda la república...</p>
+    </div>
+  </div>
+
+  <div id="Carrito" class="tab-content">
+    <h2>Carrito de Compras</h2>
+    <div class="cart-section">
+        <div id="cart-items">
+            <p>Tu carrito está vacío.</p>
+        </div>
+        <div class="cart-total">
+            Total: <span id="cart-total">$0.00</span>
+        </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Contacto: contacto@rusowip.com</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // --- LÓGICA DEL CARRITO ---
+      let carrito = [];
+      const cartItemsContainer = document.getElementById('cart-items');
+      const cartTotalEl = document.getElementById('cart-total');
+      const cartCounterEl = document.getElementById('cart-counter');
+      const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+      const buyNowButtons = document.querySelectorAll('.buy-now-btn');
+
+      // Función para agregar al carrito
+      function agregarAlCarrito(nombre, precio) {
+        carrito.push({ nombre, precio });
+        renderizarCarrito();
+      }
+      
+      // Función para quitar del carrito
+      function removerDelCarrito(index) {
+          carrito.splice(index, 1);
+          renderizarCarrito();
+      }
+
+      // Event Listeners para botones de "Agregar al Carrito"
+      addToCartButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const nombre = button.dataset.nombre;
+          const precio = parseFloat(button.dataset.precio);
+          agregarAlCarrito(nombre, precio);
+        });
+      });
+
+      // Event Listeners para botones de "Comprar Ahora"
+      buyNowButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const nombre = button.dataset.nombre;
+            const precio = parseFloat(button.dataset.precio);
+            agregarAlCarrito(nombre, precio);
+            // Simula un clic en la pestaña del carrito para navegar allí
+            document.querySelector('.tab-link[data-tab="Carrito"]').click();
+        });
+      });
+      
+      // Event Listener para los botones de quitar (usando delegación de eventos)
+      cartItemsContainer.addEventListener('click', function(event) {
+          if (event.target.classList.contains('remove-from-cart-btn')) {
+              const index = parseInt(event.target.dataset.index, 10);
+              removerDelCarrito(index);
+          }
+      });
+
+      function renderizarCarrito() {
+        let total = 0;
+        cartItemsContainer.innerHTML = '';
+        
+        if (carrito.length === 0) {
+          cartItemsContainer.innerHTML = '<p>Tu carrito está vacío.</p>';
+        } else {
+          carrito.forEach((item, index) => {
+            total += item.precio;
+            const itemEl = document.createElement('div');
+            itemEl.className = 'cart-item';
+            itemEl.innerHTML = `
+                <span>${item.nombre}</span>
+                <div>
+                    <span>$${item.precio.toFixed(2)}</span>
+                    <button class="remove-from-cart-btn" data-index="${index}">X</button>
+                </div>`;
+            cartItemsContainer.appendChild(itemEl);
+          });
+        }
+        
+        cartTotalEl.textContent = `$${total.toFixed(2)}`;
+        cartCounterEl.textContent = carrito.length;
+      }
+
+      // --- LÓGICA DE LAS PESTAÑAS ---
+      const tabs = document.querySelectorAll('.tab-link');
+      const tabContents = document.querySelectorAll('.tab-content');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(item => item.classList.remove('active'));
+          tabContents.forEach(content => content.style.display = 'none');
+          const target = document.getElementById(tab.dataset.tab);
+          target.style.display = 'block';
+          tab.classList.add('active');
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
