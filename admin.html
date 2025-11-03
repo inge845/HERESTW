@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Admin - rusowip</title>
+    <style>
+        /* Estilos básicos para el panel de admin */
+        @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
+        body { font-family: Arial, sans-serif; background-color: #1a1a1a; color: #e0e0e0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background-color: #2a2a2a; padding: 30px; border-radius: 8px; border: 1px solid #444; }
+        h1, h2 { text-align: center; color: #ff0000; font-family: 'Metal Mania', cursive; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        select, input { width: 100%; padding: 10px; background-color: #1a1a1a; border: 1px solid #555; color: #e0e0e0; border-radius: 4px; font-size: 1rem; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 1rem; }
+        button:hover { background-color: #218838; }
+        #product-list { margin-top: 20px; border-top: 1px solid #444; padding-top: 10px; }
+        #product-list div { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #333; }
+        #product-list span { font-weight: bold; color: #0099ff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Panel de Administración</h1>
+        <h2>Actualizar Stock de Productos</h2>
+
+        <div class="form-group">
+            <label for="product-select">Seleccionar Producto:</label>
+            <select id="product-select">
+                <option value="">Cargando productos...</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="quantity-add">Cantidad a AGREGAR (no reemplazar):</label>
+            <input type="number" id="quantity-add" placeholder="Ej: 50" min="1">
+        </div>
+
+        <button id="update-stock-btn">Agregar al Inventario</button>
+
+        <div id="product-list">
+            <h2>Stock Actual</h2>
+            </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const select = document.getElementById('product-select');
+        const quantityInput = document.getElementById('quantity-add');
+        const updateBtn = document.getElementById('update-stock-btn');
+        const productListDiv = document.getElementById('product-list');
+
+        // --- 1. Cargar productos en el dropdown y en la lista ---
+        async function cargarProductos() {
+            try {
+                // Usamos GET para llamar al api.php y pedir la lista
+                const response = await fetch('api.php'); 
+                if (!response.ok) {
+                    throw new Error('No se pudo conectar al API');
+                }
+                const productos = await response.json();
+
+                if (productos.error) {
+                    throw new Error(productos.error);
+                }
+
+                select.innerHTML = '<option value="">-- Selecciona un producto --</option>'; // Limpiar
+                productListDiv.innerHTML = '<h2>Stock Actual</h2>'; // Limpiar
+
+                productos.forEach(prod => {
+                    // Llenar el dropdown
+                    const option = document.createElement('option');
+                    option.value = prod.id;
+                    option.textContent = `${prod.nombre} (ID: ${prod.id})`;
+                    select.appendChild(option);
+
+                    // Llenar la lista de stock
+                    const stockItem = document.createElement('div');
+                    stockItem.innerHTML = `<span>${prod.nombre}:</span> ${prod.stock} unidades`;
+                    productListDiv.appendChild(stockItem);
+                });
+
+            } catch (error) {
+                console.error('Error cargando productos:', error);
+                select.innerHTML = `<option value="">Error al cargar</option>`;
+                productListDiv.innerHTML = `<p style="color:red;">${error.message}</p>`;
+            }
+        }
+
+        // --- 2. Enviar la actualización de stock ---
+        updateBtn.addEventListener('click', async function() {
+            const producto_id = select.value;
+            const cantidad_agregar = parseInt(quantityInput.value, 10);
+
+            if (!producto_id) {
+                alert('Por favor, selecciona un producto.');
+                return;
+            }
+            if (isNaN(cantidad_agregar) || cantidad_agregar <= 0) {
+                alert('Por favor, ingresa una cantidad válida para agregar.');
+                return;
+            }
+
+            // Creamos el cuerpo de la solicitud para el API
+            const datos = {
+                accion: 'actualizar_stock',
+                producto_id: producto_id,
+                cantidad_agregar: cantidad_agregar
+            };
+
+            try {
+                // Usamos POST para enviar la actualización al api.php
+                const response = await fetch('api.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(datos)
+                });
+
+                const resultado = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(resultado.error);
+                }
+                
+                alert(resultado.mensaje);
+                quantityInput.value = ''; // Limpiar el input
+                await cargarProductos(); // Recargar la lista de stock
+
+            } catch (error) {
+                console.error('Error actualizando stock:', error);
+                alert(`Error: ${error.message}`);
+            }
+        });
+
+        // Carga inicial de productos al abrir la página
+        cargarProductos();
+    });
+    </script>
+</body>
+</html>

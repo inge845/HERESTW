@@ -5,166 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>rusowip</title>
   <style>
+    /* ... (Todo tu CSS va aquí, no hay cambios) ... */
     /* Importar fuente de Google Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
-
     /* --- Estilos Generales --- */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #1a1a1a;
-      color: #e0e0e0;
-      margin: 0;
-      padding: 20px;
-    }
-    header, footer {
-      text-align: center;
-      padding: 20px 0;
-    }
-    h1 {
-      font-family: 'Metal+Mania', cursive;
-      font-size: 4rem;
-      color: #ff0000;
-      text-shadow: 2px 2px 4px #000000;
-      margin: 0;
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-weight: normal;
-      border-bottom: 1px solid #444;
-      padding-bottom: 10px;
-    }
-
+    body { font-family: Arial, sans-serif; background-color: #1a1a1a; color: #e0e0e0; margin: 0; padding: 20px; }
+    header, footer { text-align: center; padding: 20px 0; }
+    h1 { font-family: 'Metal+Mania', cursive; font-size: 4rem; color: #ff0000; text-shadow: 2px 2px 4px #000000; margin: 0; }
+    h2 { text-align: center; margin-bottom: 30px; font-weight: normal; border-bottom: 1px solid #444; padding-bottom: 10px; }
     /* --- Estilos para las Pestañas --- */
-    .tabs {
-      text-align: center;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #ff0000;
-    }
-    .tab-link {
-      background-color: transparent;
-      color: #e0e0e0;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      padding: 14px 16px;
-      font-size: 17px;
-      transition: 0.3s;
-    }
-    .tab-link:hover {
-      background-color: #2a2a2a;
-    }
-    .tab-link.active {
-      background-color: #ff0000;
-      color: #1a1a1a;
-      font-weight: bold;
-    }
-    .tab-content {
-      display: none; /* Ocultar contenido por defecto */
-      padding: 20px 12px;
-      border-top: none;
-    }
-    #cart-counter {
-        background-color: #0099ff;
-        color: white;
-        border-radius: 50%;
-        padding: 2px 6px;
-        font-size: 12px;
-        vertical-align: top;
-    }
-
+    .tabs { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #ff0000; }
+    .tab-link { background-color: transparent; color: #e0e0e0; border: none; outline: none; cursor: pointer; padding: 14px 16px; font-size: 17px; transition: 0.3s; }
+    .tab-link:hover { background-color: #2a2a2a; }
+    .tab-link.active { background-color: #ff0000; color: #1a1a1a; font-weight: bold; }
+    .tab-content { display: none; padding: 20px 12px; border-top: none; }
+    #cart-counter { background-color: #0099ff; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px; vertical-align: top; }
     /* --- Estilos del Catálogo y Botones --- */
-    .catalogo {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .producto {
-      background-color: #2a2a2a;
-      border: 1px solid #444;
-      border-radius: 8px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .producto img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 4px;
-      margin-bottom: 15px;
-    }
-    .producto h3, .producto p {
-        margin-bottom: 15px;
-    }
-    .precio {
-      font-weight: bold;
-      color: #0099ff;
-    }
-    .product-buttons {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 10px;
-        margin-top: 10px;
-    }
-    .add-to-cart-btn, .buy-now-btn {
-        border: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: bold;
-        transition: background-color 0.3s;
-    }
-    .add-to-cart-btn {
-        background-color: #007BFF;
-        color: white;
-    }
-    .add-to-cart-btn:hover {
-        background-color: #0056b3;
-    }
-    .buy-now-btn {
-        background-color: #28a745; /* Color verde */
-        color: white;
-    }
-    .buy-now-btn:hover {
-        background-color: #218838;
-    }
-    
+    .catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+    .producto { background-color: #2a2a2a; border: 1px solid #444; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); display: flex; flex-direction: column; justify-content: space-between; }
+    .producto img { max-width: 100%; height: auto; border-radius: 4px; margin-bottom: 15px; }
+    .producto h3, .producto p { margin-bottom: 15px; }
+    .precio { font-weight: bold; color: #0099ff; }
+    .stock-display { color: #888; font-style: italic; }
+    .product-buttons { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 10px; }
+    .add-to-cart-btn, .buy-now-btn, #checkout-btn { border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; transition: background-color 0.3s; color: white; }
+    .add-to-cart-btn { background-color: #007BFF; }
+    .add-to-cart-btn:hover { background-color: #0056b3; }
+    .buy-now-btn, #checkout-btn { background-color: #28a745; }
+    .buy-now-btn:hover, #checkout-btn:hover { background-color: #218838; }
     /* --- Estilos de Secciones de Información y Carrito --- */
-    .info-section, .cart-section {
-        max-width: 800px;
-        margin: 0 auto;
-        background-color: #2a2a2a;
-        padding: 20px;
-        border-radius: 8px;
-    }
-    .cart-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid #444;
-        padding: 10px 0;
-    }
-    .remove-from-cart-btn {
-        background-color: #dc3545;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        width: 25px;
-        height: 25px;
-        font-weight: bold;
-    }
-    .cart-total {
-        text-align: right;
-        font-size: 1.2rem;
-        font-weight: bold;
-        margin-top: 20px;
-    }
+    .info-section, .cart-section { max-width: 800px; margin: 0 auto; background-color: #2a2a2a; padding: 20px; border-radius: 8px; }
+    .cart-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #444; padding: 10px 0; }
+    .remove-from-cart-btn { background-color: #dc3545; color: white; border: none; border-radius: 50%; cursor: pointer; width: 25px; height: 25px; font-weight: bold; }
+    .cart-total { text-align: right; font-size: 1.2rem; font-weight: bold; margin-top: 20px; }
+    /* --- Estilos para la sección de pago --- */
+    #payment-options div { margin-bottom: 10px; font-size: 1.1rem; }
+    #payment-options input[type="radio"] { margin-right: 10px; cursor: pointer; }
+    #payment-options label { cursor: pointer; }
+    .payment-form { display: none; padding-top: 15px; margin-top: 20px; border-top: 1px solid #444; }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #ccc; }
+    .form-group input[type="text"] { width: 95%; padding: 10px; background-color: #1a1a1a; border: 1px solid #555; color: #e0e0e0; border-radius: 4px; font-size: 1rem; }
+    /* --- (NUEVO) Estilo para el buscador --- */
+    #search-bar { width: 50%; padding: 10px; font-size: 1rem; background-color: #2a2a2a; border: 1px solid #444; color: #e0e0e0; border-radius: 5px; display: block; margin: 0 auto 20px auto; }
   </style>
 </head>
 <body>
@@ -179,182 +62,392 @@
     <button class="tab-link" data-tab="Pagos">Pagos</button>
     <button class="tab-link" data-tab="Envios">Envíos</button>
     <button class="tab-link" data-tab="Carrito">Carrito <span id="cart-counter">0</span></button>
+    <a href="admin.html" target="_blank" class="tab-link" style="text-decoration: none; color: #0099ff;">Admin</a>
   </nav>
 
   <div id="Catalogo" class="tab-content" style="display:block;">
     <h2>Catálogo de Productos</h2>
+    
+    <input type="text" id="search-bar" placeholder="Buscar producto por nombre...">
     <div class="catalogo">
         <article class="producto">
           <div>
             <h3>Teclado Mecánico RGB</h3>
             <img src="tkl.jpg" alt="Teclado mecánico con luces RGB" width="200">
-            <p>Switches de alta precisión y retroiluminación personalizable.</p>
+            <p>Switches de alta precisión...</p>
             <p class="precio">$1,800.00</p>
+            <p class="stock-display" data-stock-id="1">Stock: Cargando...</p>
           </div>
           <div class="product-buttons">
-            <button class="add-to-cart-btn" data-nombre="Teclado Mecánico RGB" data-precio="1800">Agregar al Carrito</button>
-            <button class="buy-now-btn" data-nombre="Teclado Mecánico RGB" data-precio="1800">Comprar Ahora</button>
+            <button class="add-to-cart-btn" data-id="1" data-nombre="Teclado Mecánico RGB" data-precio="1800">Agregar al Carrito</button>
+            <button class="buy-now-btn" data-id="1" data-nombre="Teclado Mecánico RGB" data-precio="1800">Comprar Ahora</button>
           </div>
         </article>
+        
         <article class="producto">
           <div>
             <h3>Mouse Gamer Inalámbrico</h3>
             <img src="g502.jpg" alt="Mouse gamer Logitech" width="200">
-            <p>Sensor óptico de 16,000 DPI y diseño ultraligero.</p>
+            <p>Sensor óptico de 16,000 DPI...</p>
             <p class="precio">$1,250.00</p>
+            <p class="stock-display" data-stock-id="2">Stock: Cargando...</p>
           </div>
           <div class="product-buttons">
-            <button class="add-to-cart-btn" data-nombre="Mouse Gamer" data-precio="1250">Agregar al Carrito</button>
-            <button class="buy-now-btn" data-nombre="Mouse Gamer" data-precio="1250">Comprar Ahora</button>
+            <button class="add-to-cart-btn" data-id="2" data-nombre="Mouse Gamer Inalámbrico" data-precio="1250">Agregar al Carrito</button>
+            <button class="buy-now-btn" data-id="2" data-nombre="Mouse Gamer Inalámbrico" data-precio="1250">Comprar Ahora</button>
           </div>
         </article>
+        
         <article class="producto">
           <div>
             <h3>Auriculares 7.1 Surround</h3>
             <img src="audifonos.jpg" alt="Auriculares con micrófono" width="200">
-            <p>Sonido envolvente para una inmersión total en el juego.</p>
+            <p>Sonido envolvente para inmersión total...</p>
             <p class="precio">$2,100.00</p>
+            <p class="stock-display" data-stock-id="3">Stock: Cargando...</p>
           </div>
           <div class="product-buttons">
-            <button class="add-to-cart-btn" data-nombre="Auriculares 7.1" data-precio="2100">Agregar al Carrito</button>
-            <button class="buy-now-btn" data-nombre="Auriculares 7.1" data-precio="2100">Comprar Ahora</button>
+            <button class="add-to-cart-btn" data-id="3" data-nombre="Auriculares 7.1 Surround" data-precio="2100">Agregar al Carrito</button>
+            <button class="buy-now-btn" data-id="3" data-nombre="Auriculares 7.1 Surround" data-precio="2100">Comprar Ahora</button>
           </div>
         </article>
+        
         <article class="producto">
           <div>
             <h3>Monitor Curvo 144Hz</h3>
             <img src="monitor.png" alt="Monitor gaming curvo" width="200">
-            <p>Pantalla de 27 pulgadas con tiempo de respuesta de 1ms.</p>
+            <p>Pantalla de 27 pulgadas, 1ms...</p>
             <p class="precio">$6,500.00</p>
+            <p class="stock-display" data-stock-id="4">Stock: Cargando...</p>
           </div>
           <div class="product-buttons">
-            <button class="add-to-cart-btn" data-nombre="Monitor Curvo" data-precio="6500">Agregar al Carrito</button>
-            <button class="buy-now-btn" data-nombre="Monitor Curvo" data-precio="6500">Comprar Ahora</button>
+            <button class="add-to-cart-btn" data-id="4" data-nombre="Monitor Curvo 144Hz" data-precio="6500">Agregar al Carrito</button>
+            <button class="buy-now-btn" data-id="4" data-nombre="Monitor Curvo 144Hz" data-precio="6500">Comprar Ahora</button>
           </div>
         </article>
+        
     </div>
   </div>
 
   <div id="Pagos" class="tab-content">
-    <h2>Métodos de Pago</h2>
-    <div class="info-section">
-      <p>💳 Aceptamos una amplia variedad de métodos de pago para tu comodidad...</p>
+        <h2>Métodos de Pago</h2>
+        <div class="info-section"><p>💳 Aceptamos una amplia variedad de métodos de pago...</p></div>
     </div>
-  </div>
-
-  <div id="Envios" class="tab-content">
-    <h2>Políticas de Envío</h2>
-    <div class="info-section">
-      <p>🚚 Realizamos envíos a toda la república...</p>
+    <div id="Envios" class="tab-content">
+        <h2>Políticas de Envío</h2>
+        <div class="info-section"><p>🚚 Realizamos envíos a toda la república...</p></div>
     </div>
-  </div>
-
-  <div id="Carrito" class="tab-content">
-    <h2>Carrito de Compras</h2>
-    <div class="cart-section">
-        <div id="cart-items">
-            <p>Tu carrito está vacío.</p>
+    <div id="Carrito" class="tab-content">
+        <h2>Carrito de Compras</h2>
+        <div class="cart-section">
+            <div id="cart-items"><p>Tu carrito está vacío.</p></div>
+            <div class="cart-total">Total: <span id="cart-total">$0.00</span></div>
+            <button id="checkout-btn" style="width: 100%; margin-top: 20px;">Proceder al Pago</button>
+            <div id="payment-section" style="display: none; margin-top: 30px;">
+                <hr style="border-color: #444;">
+                <h3 style="text-align: center;">Selecciona tu Método de Pago</h3>
+                <div id="payment-options">
+                    <div><input type="radio" id="pay-paypal" name="payment-method" value="paypal"><label for="pay-paypal">PayPal</label></div>
+                    <div><input type="radio" id="pay-oxxo" name="payment-method" value="oxxo"><label for="pay-oxxo">OXXO</label></div>
+                    <div><input type="radio" id="pay-card" name="payment-method" value="card"><label for="pay-card">Tarjeta de Crédito/Débito</label></div>
+                </div>
+                <div id="paypal-form" class="payment-form">
+                    <p>Serás redirigido a PayPal...</p>
+                    <button class="buy-now-btn confirmar-pago-btn">Pagar</button>
+                </div>
+                <div id="oxxo-form" class="payment-form">
+                    <p>Se generará un recibo para OXXO...</p>
+                    <button class="buy-now-btn confirmar-pago-btn">Generar Recibo</button>
+                </div>
+                <div id="card-form" class="payment-form">
+                    <h4>Información de la Tarjeta</h4>
+                    <div class="form-group"><label for="card-name">Nombre</label><input type="text" id="card-name" placeholder="Juan Perez Perez"></div>
+                    <div class="form-group"><label for="card-number">Número de Tarjeta</label><input type="text" id="card-number" placeholder="4111 1111 1111 1111"></div>
+                    <div class="form-group"><label for="card-expiry">Expiración (MM/AA)</label><input type="text" id="card-expiry" placeholder="12/28"></div>
+                    <div class="form-group"><label for="card-cvv">CVV</label><input type="text" id="card-cvv" placeholder="123"></div>
+                    <button class="buy-now-btn confirmar-pago-btn">Pagar</button>
+                </div>
+            </div>
         </div>
-        <div class="cart-total">
-            Total: <span id="cart-total">$0.00</span>
-        </div>
     </div>
-  </div>
 
   <footer>
     <p>Contacto: contacto@rusowip.com</p>
   </footer>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // --- LÓGICA DEL CARRITO ---
-      let carrito = [];
-      const cartItemsContainer = document.getElementById('cart-items');
-      const cartTotalEl = document.getElementById('cart-total');
-      const cartCounterEl = document.getElementById('cart-counter');
-      const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-      const buyNowButtons = document.querySelectorAll('.buy-now-btn');
+  document.addEventListener('DOMContentLoaded', async function() {
+    
+    // --- 1. BASE DE DATOS REAL (REEMPLAZA AL MOCK) ---
+    // Esta variable se llenará con datos REALES de la base de datos
+    let databaseStock = {};
+    const stockDisplays = document.querySelectorAll('.stock-display');
 
-      // Función para agregar al carrito
-      function agregarAlCarrito(nombre, precio) {
-        carrito.push({ nombre, precio });
-        renderizarCarrito();
-      }
-      
-      // Función para quitar del carrito
-      function removerDelCarrito(index) {
-          carrito.splice(index, 1);
-          renderizarCarrito();
-      }
+    // --- 2. LÓGICA DEL CARRITO (sin cambios) ---
+    let carrito = []; // { id, nombre, precio, cantidad }
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartTotalEl = document.getElementById('cart-total');
+    const cartCounterEl = document.getElementById('cart-counter');
+    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+    const buyNowButtons = document.querySelectorAll('.buy-now-btn');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const paymentSection = document.getElementById('payment-section');
 
-      // Event Listeners para botones de "Agregar al Carrito"
-      addToCartButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const nombre = button.dataset.nombre;
-          const precio = parseFloat(button.dataset.precio);
-          agregarAlCarrito(nombre, precio);
+    // --- (NUEVO) LÓGICA DEL BUSCADOR ---
+    const searchBar = document.getElementById('search-bar');
+    const allProducts = document.querySelectorAll('.producto'); 
+
+    searchBar.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        allProducts.forEach(productCard => {
+            const productName = productCard.querySelector('h3').textContent.toLowerCase();
+            if (productName.includes(searchTerm)) {
+                productCard.style.display = 'flex'; 
+            } else {
+                productCard.style.display = 'none'; 
+            }
         });
-      });
+    });
 
-      // Event Listeners para botones de "Comprar Ahora"
-      buyNowButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const nombre = button.dataset.nombre;
-            const precio = parseFloat(button.dataset.precio);
-            agregarAlCarrito(nombre, precio);
-            // Simula un clic en la pestaña del carrito para navegar allí
-            document.querySelector('.tab-link[data-tab="Carrito"]').click();
-        });
-      });
-      
-      // Event Listener para los botones de quitar (usando delegación de eventos)
-      cartItemsContainer.addEventListener('click', function(event) {
-          if (event.target.classList.contains('remove-from-cart-btn')) {
-              const index = parseInt(event.target.dataset.index, 10);
-              removerDelCarrito(index);
-          }
-      });
+    // --- 3. FUNCIONES (MODIFICADAS PARA USAR EL STOCK REAL) ---
 
-      function renderizarCarrito() {
-        let total = 0;
-        cartItemsContainer.innerHTML = '';
-        
-        if (carrito.length === 0) {
-          cartItemsContainer.innerHTML = '<p>Tu carrito está vacío.</p>';
-        } else {
-          carrito.forEach((item, index) => {
-            total += item.precio;
-            const itemEl = document.createElement('div');
-            itemEl.className = 'cart-item';
-            itemEl.innerHTML = `
-                <span>${item.nombre}</span>
-                <div>
-                    <span>$${item.precio.toFixed(2)}</span>
-                    <button class="remove-from-cart-btn" data-index="${index}">X</button>
-                </div>`;
-            cartItemsContainer.appendChild(itemEl);
-          });
+    // (MODIFICADA) Esta función ahora carga el stock real desde api.php
+    async function cargarStockInicial() {
+        try {
+            // 1. Llamar al api.php para OBTENER productos (método GET por defecto)
+            const response = await fetch('api.php');
+            if (!response.ok) throw new Error('Error de red al cargar stock.');
+            
+            const productos = await response.json();
+            if (productos.error) throw new Error(productos.error);
+
+            // 2. Limpiar el mock local y rellenarlo con datos reales
+            databaseStock = {}; 
+            productos.forEach(prod => {
+                databaseStock[prod.id] = {
+                    stock: parseInt(prod.stock, 10), // Asegurarse de que sea un número
+                    nombre: prod.nombre 
+                };
+            });
+
+            // 3. Actualizar el HTML con el stock real
+            stockDisplays.forEach(display => {
+                const id = display.dataset.stockId;
+                if (databaseStock[id]) {
+                    display.textContent = `Stock: ${databaseStock[id].stock}`;
+                } else {
+                    display.textContent = "Stock: No disponible";
+                }
+            });
+            console.log('Stock real cargado:', databaseStock);
+
+        } catch (error) {
+            console.error("Error fatal cargando stock:", error.message);
+            stockDisplays.forEach(display => {
+                display.textContent = `Error al cargar stock`;
+            });
+        }
+    }
+
+    // (MODIFICADA) Esta función ahora usa 'databaseStock'
+    function agregarAlCarrito(id, nombre, precio) {
+        // Validar que el stock se haya cargado
+        if (!databaseStock[id]) {
+            alert('El stock no se ha cargado. Refresca la página.');
+            return;
         }
         
+        const stockDisponible = databaseStock[id].stock;
+        const itemEnCarrito = carrito.find(item => item.id === id);
+
+        if (itemEnCarrito) {
+            if (itemEnCarrito.cantidad < stockDisponible) {
+                itemEnCarrito.cantidad++;
+            } else {
+                alert(`¡Lo sentimos! Solo quedan ${stockDisponible} unidades de ${nombre}.`);
+            }
+        } else {
+             if (stockDisponible > 0) {
+                 carrito.push({ id, nombre, precio, cantidad: 1 });
+             } else {
+                 alert(`${nombre} está agotado.`);
+             }
+        }
+        renderizarCarrito();
+    }
+
+    // (MODIFICADA) Esta función ahora usa 'databaseStock'
+    function modificarCantidad(id, cambio) {
+        const itemEnCarrito = carrito.find(item => item.id === id);
+        if (!itemEnCarrito) return;
+
+        const stockDisponible = databaseStock[id].stock;
+        
+        if (cambio === 1) { // Aumentar
+            if (itemEnCarrito.cantidad < stockDisponible) {
+                itemEnCarrito.cantidad++;
+            } else {
+                alert(`¡Límite de stock alcanzado! (${stockDisponible} unidades)`);
+            }
+        } else if (cambio === -1) { // Disminuir
+            itemEnCarrito.cantidad--;
+            if (itemEnCarrito.cantidad <= 0) {
+                carrito = carrito.filter(item => item.id !== id);
+            }
+        }
+        renderizarCarrito();
+    }
+
+    // (SIN CAMBIOS) Función para pintar el carrito en el HTML
+    function renderizarCarrito() {
+        let total = 0;
+        let totalItems = 0;
+        cartItemsContainer.innerHTML = ''; 
+        if (carrito.length === 0) {
+            cartItemsContainer.innerHTML = '<p>Tu carrito está vacío.</p>';
+            paymentSection.style.display = 'none';
+            checkoutBtn.style.display = 'block';
+        } else {
+            carrito.forEach(item => {
+                const subtotal = item.precio * item.cantidad;
+                total += subtotal;
+                totalItems += item.cantidad;
+                const itemEl = document.createElement('div');
+                itemEl.className = 'cart-item';
+                itemEl.innerHTML = `
+                    <span style="flex-grow: 1;">${item.nombre} ($${item.precio.toFixed(2)})</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <button class="qty-btn-decrease remove-from-cart-btn" data-id="${item.id}">-</button>
+                        <span>${item.cantidad}</span>
+                        <button class="qty-btn-increase remove-from-cart-btn" data-id="${item.id}">+</button>
+                        <span style="min-width: 80px; text-align: right; font-weight: bold;">$${subtotal.toFixed(2)}</span>
+                    </div>`;
+                cartItemsContainer.appendChild(itemEl);
+            });
+        }
         cartTotalEl.textContent = `$${total.toFixed(2)}`;
-        cartCounterEl.textContent = carrito.length;
-      }
+        cartCounterEl.textContent = totalItems;
+    }
 
-      // --- LÓGICA DE LAS PESTAÑAS ---
-      const tabs = document.querySelectorAll('.tab-link');
-      const tabContents = document.querySelectorAll('.tab-content');
-
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          tabs.forEach(item => item.classList.remove('active'));
-          tabContents.forEach(content => content.style.display = 'none');
-          const target = document.getElementById(tab.dataset.tab);
-          target.style.display = 'block';
-          tab.classList.add('active');
+    // --- 4. EVENT LISTENERS (SIN CAMBIOS EN SU MAYORÍA) ---
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.dataset.id;
+            const nombre = button.dataset.nombre;
+            const precio = parseFloat(button.dataset.precio);
+            agregarAlCarrito(id, nombre, precio);
         });
-      });
     });
-  </script>
+
+    buyNowButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.dataset.id;
+            const nombre = button.dataset.nombre;
+            const precio = parseFloat(button.dataset.precio);
+            agregarAlCarrito(id, nombre, precio);
+            document.querySelector('.tab-link[data-tab="Carrito"]').click();
+        });
+    });
+    
+    cartItemsContainer.addEventListener('click', function(event) {
+        const target = event.target;
+        const id = target.dataset.id;
+        if (target.classList.contains('qty-btn-increase')) {
+            modificarCantidad(id, 1);
+        } else if (target.classList.contains('qty-btn-decrease')) {
+            modificarCantidad(id, -1);
+        }
+    });
+    
+    checkoutBtn.addEventListener('click', () => {
+        if (carrito.length > 0) {
+            paymentSection.style.display = 'block';
+            checkoutBtn.style.display = 'none';
+        } else {
+            alert('Tu carrito está vacío. Agrega productos para poder pagar.');
+        }
+    });
+
+    const paymentRadios = document.querySelectorAll('input[name="payment-method"]');
+    const paymentForms = document.querySelectorAll('.payment-form');
+    paymentRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            paymentForms.forEach(form => form.style.display = 'none');
+            const targetFormId = this.value + '-form';
+            const targetForm = document.getElementById(targetFormId);
+            if (targetForm) {
+                targetForm.style.display = 'block';
+            }
+        });
+    });
+
+    // (MODIFICADO) Lógica de pago final con FETCH REAL
+    paymentSection.addEventListener('click', async function(event) {
+        if (event.target.classList.contains('confirmar-pago-btn')) {
+            
+            // 1. Recolectar datos
+            const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+            const metodoPagoRadio = document.querySelector('input[name="payment-method"]:checked');
+            if (!metodoPagoRadio) {
+                alert('Por favor, selecciona un método de pago.');
+                return;
+            }
+            const metodoPago = metodoPagoRadio.value;
+            const datosDelPedido = {
+                carrito: carrito,
+                total: total,
+                metodoPago: metodoPago
+            };
+
+            console.log('Enviando al backend (api.php):', datosDelPedido);
+
+            try {
+                // 2. Llamar al 'mesero' (api.php)
+                const respuesta = await fetch('api.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(datosDelPedido)
+                });
+                const resultado = await respuesta.json();
+                if (!respuesta.ok) throw new Error(resultado.error);
+
+                // 3. Éxito
+                alert(resultado.mensaje);
+                
+                // 4. Limpiar frontend (¡y recargar el stock real!)
+                await cargarStockInicial(); // Recarga el stock desde la BD
+                carrito = [];
+                renderizarCarrito();
+                document.querySelector('.tab-link[data-tab="Catalogo"]').click();
+
+            } catch (error) {
+                // 5. Error
+                console.error('Error del fetch:', error.message);
+                alert(`Error al procesar el pedido: ${error.message}`);
+            }
+        }
+    });
+
+    // LÓGICA DE LAS PESTAÑAS (sin cambios)
+    const tabs = document.querySelectorAll('.tab-link');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(item => item.classList.remove('active'));
+            tabContents.forEach(content => content.style.display = 'none');
+            const tabId = tab.dataset.tab;
+            const target = document.getElementById(tabId);
+            if(target) { target.style.display = 'block'; }
+            tab.classList.add('active');
+        });
+    });
+
+    // --- 5. CARGA INICIAL ---
+    // ¡Ahora es asíncrono!
+    await cargarStockInicial();
+    renderizarCarrito();
+});
+</script>
 
 </body>
 </html>
